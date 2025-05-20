@@ -3,6 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HolidaysOverviewComponent } from './components/holidays-overview/holidays-overview.component';
+import {provideHttpClient, withFetch} from '@angular/common/http';
+import { CreateEmployeeComponent } from './components/holidays-overview/components/create-employee/create-employee.component';
+import { HolidayListComponent } from './components/holidays-overview/components/holiday-list/holiday-list.component';
+import { CreateHolidayComponent } from './components/holidays-overview/components/create-holiday/create-holiday.component';
 
 @NgModule({
   declarations: [
@@ -10,9 +15,19 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HolidaysOverviewComponent,
+    CreateEmployeeComponent,
+    HolidayListComponent,
+    CreateHolidayComponent
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withFetch())
+  ],
+  exports: [
+    CreateEmployeeComponent,
+    HolidayListComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
