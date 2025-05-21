@@ -26,7 +26,7 @@ export class CreateEmployeeComponent {
     })
   }
 
-  public createEmployee():void {
+  public createEmployee(): void {
     this.#employeeService.createEmployee$({
       name: this.getEmployeeName().value
     }).pipe(take(1)).subscribe(employee => {

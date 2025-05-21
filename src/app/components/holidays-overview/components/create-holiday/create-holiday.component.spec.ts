@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateHolidayComponent } from './create-holiday.component';
+import {CreateHolidayComponent} from './create-holiday.component';
 import {provideHttpClient} from '@angular/common/http';
 
 describe('CreateHolidayComponent', () => {
@@ -10,11 +10,11 @@ describe('CreateHolidayComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CreateHolidayComponent],
-      providers:[
-        provideHttpClient()
+      providers: [
+        provideHttpClient(),
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CreateHolidayComponent);
     component = fixture.componentInstance;

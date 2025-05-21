@@ -8,7 +8,7 @@ import {Holiday} from '../../../../shared/interfaces/holiday';
 @Component({
   selector: 'app-create-holiday',
   standalone: true,
-  templateUrl: './create-holiday-.component.html',
+  templateUrl: './create-holiday.component.html',
   styleUrl: './create-holiday.component.css',
   imports: [
     ReactiveFormsModule,
@@ -47,14 +47,14 @@ export class CreateHolidayComponent {
           alert('Holiday overlaps with existing holidays');
           return null;
         }
-        if(holidayToSoon) {
+        if (holidayToSoon) {
           alert('Its not possible to schedule a holiday for over five working days');
           return null;
         }
         return createHoliday;
       })
     ).pipe(take(1)).subscribe(holiday => {
-      if(holiday){
+      if (holiday) {
         this.createHoliday.emit([holiday]);
       }
     });

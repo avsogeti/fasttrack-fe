@@ -23,7 +23,7 @@ export class HolidayService {
     return this.#httpClient.post<Holiday>('http://localhost:8080/holidays', holiday)
   }
 
-  public deleteHoliday$(holidayId: String) {
+  public deleteHoliday$(holidayId: String): Observable<object> {
     return this.#httpClient.delete(`http://localhost:8080/holidays/${holidayId}`);
   }
 }

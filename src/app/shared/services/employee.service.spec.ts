@@ -1,6 +1,6 @@
 import {TestBed, waitForAsync} from '@angular/core/testing';
 
-import { EmployeeService } from './employee.service';
+import {EmployeeService} from './employee.service';
 import {provideHttpClient} from '@angular/common/http';
 import {provideHttpClientTesting} from '@angular/common/http/testing';
 
@@ -23,4 +23,10 @@ describe('EmployeeService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should create employee by name', () => {
+    const mockResponse = {employeeId: 'KLM000002', name: 'John Doe'};
+    const mockEmployee = {employeeId: null, name: 'John Doe'};
+    service.createEmployee$(mockEmployee).subscribe(response => expect(response).toEqual(mockResponse));
+  })
 });

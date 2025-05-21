@@ -1,6 +1,6 @@
 import {Component, inject, output, OutputEmitterRef} from '@angular/core';
 import {HolidayService} from '../../../../shared/services/holiday.service';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {take} from 'rxjs';
 import {Holiday} from '../../../../shared/interfaces/holiday';
 
@@ -27,11 +27,11 @@ export class FindHolidaysOfEmployeeComponent {
     })
   }
 
-  public getEmployeeId(){
+  public getEmployeeId(): AbstractControl {
     return this.employeeIdForm.get('employeeId');
   }
 
-  public getEmployeeHolidays(): void{
+  public getEmployeeHolidays(): void {
     this.#holidayService.getHolidaysByEmployeeID$(this.getEmployeeId().value).pipe(take(1)).subscribe(holidays => {
       this.fetchHolidays.emit(holidays);
     })
