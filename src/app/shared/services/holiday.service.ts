@@ -18,4 +18,8 @@ export class HolidayService {
   public createHoliday(holiday: Holiday): Observable<Holiday> {
     return this.http.post<Holiday>('http://localhost:8080/holidays', holiday)
   }
+
+  public deleteHoliday(holidayId: String) {
+    return this.http.delete(`http://localhost:8080/holidays/${holidayId}`);
+  }
 }

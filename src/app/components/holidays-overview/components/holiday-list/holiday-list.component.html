@@ -15,6 +15,11 @@
         <label>End date: </label>
         <p>{{ holiday.endOfHoliday  | date:  'dd/MM/yyyy' }}</p>
       </div>
+      <div class="value-display">
+        <label>Status: </label>
+        <p>{{ holiday.status | lowercase}}</p>
+      </div>
+      <button (click)="removeHoliday(holiday)">Delete holiday</button>
     </div>
   }
 }

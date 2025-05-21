@@ -1,4 +1,4 @@
-import {Component, inject, output} from '@angular/core';
+import {Component, inject, output, OutputEmitterRef} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {HolidayService} from '../../../../shared/services/holiday.service';
 import {Status} from '../../../../shared/enum/status';
@@ -21,28 +21,27 @@ export class CreateHolidayComponent {
 
   public holidayForm: FormGroup = this.#getHolidayFormGroup();
   public statusList: string[] = [Status.DRAFT, Status.REQUESTED, Status.SCHEDULED, Status.ARCHIVED];
-
-  createHoliday = output<Holiday[]>();
+  public createHoliday: OutputEmitterRef<Holiday[]> = output<Holiday[]>();
 
   #getHolidayFormGroup(): FormGroup {
     return this.#formBuilder.group({
       holidayLabel: [null, Validators.required],
       employeeId: [null, Validators.required],
-      startOfHoliday: [null, Validators.required],
-      endOfHoliday: [null, Validators.required],
+      startOfHoliday: [null],
+      endOfHoliday: [null],
       status: [null, Validators.required],
     })
   }
 
-  createHolidayOnClick():void {
+  public createHolidayOnClick():void {
     this.#holidayService.createHoliday({
       holidayLabel: this.holidayForm.get('holidayLabel').value,
       employeeId: this.holidayForm.get('employeeId').value,
       startOfHoliday: this.holidayForm.get('startOfHoliday').value,
       endOfHoliday: this.holidayForm.get('endOfHoliday').value,
       status: this.holidayForm.get('status').value
-    }).pipe(take(1)).subscribe(data => {
-      this.createHoliday.emit([data]);
+    }).pipe(take(1)).subscribe(holiday => {
+      this.createHoliday.emit([holiday]);
     })
   }
 }
