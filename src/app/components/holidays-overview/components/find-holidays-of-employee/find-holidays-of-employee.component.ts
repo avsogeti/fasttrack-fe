@@ -32,7 +32,7 @@ export class FindHolidaysOfEmployeeComponent {
   }
 
   public getEmployeeHolidays(): void{
-    this.#holidayService.getHolidaysByEmployeeID(this.getEmployeeId().value).pipe(take(1)).subscribe(holidays => {
+    this.#holidayService.getHolidaysByEmployeeID$(this.getEmployeeId().value).pipe(take(1)).subscribe(holidays => {
       this.fetchHolidays.emit(holidays);
     })
   }

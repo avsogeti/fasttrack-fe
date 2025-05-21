@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Employee} from '../interfaces/employee';
 import {Observable} from 'rxjs';
@@ -8,9 +8,9 @@ import {Observable} from 'rxjs';
 })
 export class EmployeeService {
 
-  constructor(private http: HttpClient) {}
+  #httpClient = inject(HttpClient);
 
-  public createEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>('http://localhost:8080/employees', employee)
+  public createEmployee$(employee: Employee): Observable<Employee> {
+    return this.#httpClient.post<Employee>('http://localhost:8080/employees', employee)
   }
 }

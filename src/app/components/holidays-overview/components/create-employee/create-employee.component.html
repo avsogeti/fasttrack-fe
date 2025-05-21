@@ -1,7 +1,11 @@
+<h2>Create employee</h2>
 <form [formGroup]="employeeForm">
-  <input type="text" formControlName="name" placeholder="name" />
+  <label>Employee name: </label>
+  <input type="text" formControlName="name" placeholder="name"/>
   <button [disabled]="getEmployeeName().invalid" (click)="createEmployee()">create employee</button>
 </form>
 
-<p>Employee name: {{employee?.name}}</p>
-<p>EmployeeId: {{employee?.employeeId}}</p>
+@if (employee) {
+  <p>Employee name: {{ employee?.name }}</p>
+  <p>EmployeeId: {{ employee?.employeeId }}</p>
+}

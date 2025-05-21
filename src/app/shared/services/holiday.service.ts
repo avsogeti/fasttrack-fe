@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Holiday} from '../interfaces/holiday';
@@ -9,17 +9,21 @@ import {Holiday} from '../interfaces/holiday';
 })
 export class HolidayService {
 
-  constructor(private http: HttpClient) {}
+  #httpClient = inject(HttpClient);
 
-  public getHolidaysByEmployeeID(employeeId: string): Observable<Holiday[]> {
-    return this.http.get<Holiday[]>(`http://localhost:8080/holidays/${employeeId}`);
+  public getHolidays$(): Observable<Holiday[]> {
+    return this.#httpClient.get<Holiday[]>(`http://localhost:8080/holidays`);
   }
 
-  public createHoliday(holiday: Holiday): Observable<Holiday> {
-    return this.http.post<Holiday>('http://localhost:8080/holidays', holiday)
+  public getHolidaysByEmployeeID$(employeeId: string): Observable<Holiday[]> {
+    return this.#httpClient.get<Holiday[]>(`http://localhost:8080/holidays/${employeeId}`);
   }
 
-  public deleteHoliday(holidayId: String) {
-    return this.http.delete(`http://localhost:8080/holidays/${holidayId}`);
+  public createHoliday$(holiday: Holiday): Observable<Holiday> {
+    return this.#httpClient.post<Holiday>('http://localhost:8080/holidays', holiday)
+  }
+
+  public deleteHoliday$(holidayId: String) {
+    return this.#httpClient.delete(`http://localhost:8080/holidays/${holidayId}`);
   }
 }

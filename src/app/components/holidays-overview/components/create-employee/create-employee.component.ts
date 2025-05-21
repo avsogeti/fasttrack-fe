@@ -27,10 +27,10 @@ export class CreateEmployeeComponent {
   }
 
   public createEmployee():void {
-    this.#employeeService.createEmployee({
+    this.#employeeService.createEmployee$({
       name: this.getEmployeeName().value
-    }).pipe(take(1)).subscribe(data => {
-      this.employee = data;
+    }).pipe(take(1)).subscribe(employee => {
+      this.employee = employee;
     })
   }
 
