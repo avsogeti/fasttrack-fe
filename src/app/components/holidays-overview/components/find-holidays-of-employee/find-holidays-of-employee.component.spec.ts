@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FindHolidaysOfEmployeeComponent } from './find-holidays-of-employee.component';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('FindHolidaysOfEmployeeComponent', () => {
   let component: FindHolidaysOfEmployeeComponent;
@@ -8,7 +9,10 @@ describe('FindHolidaysOfEmployeeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FindHolidaysOfEmployeeComponent]
+      imports: [FindHolidaysOfEmployeeComponent],
+      providers:[
+        provideHttpClient()
+      ]
     })
     .compileComponents();
 

@@ -1,9 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import { EmployeeService } from './employee.service';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 
 describe('EmployeeService', () => {
   let service: EmployeeService;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      providers: [EmployeeService,
+        provideHttpClient(),
+        provideHttpClientTesting()]
+    });
+  }));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

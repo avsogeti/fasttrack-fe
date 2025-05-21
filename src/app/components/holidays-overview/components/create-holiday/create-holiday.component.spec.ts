@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateHolidayComponent } from './create-holiday.component';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('CreateHolidayComponent', () => {
   let component: CreateHolidayComponent;
@@ -8,7 +9,10 @@ describe('CreateHolidayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateHolidayComponent]
+      imports: [CreateHolidayComponent],
+      providers:[
+        provideHttpClient()
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HolidayListComponent } from './holiday-list.component';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('HolidayListComponent', () => {
   let component: HolidayListComponent;
@@ -8,12 +9,18 @@ describe('HolidayListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HolidayListComponent]
+      imports: [HolidayListComponent],
+      providers:[
+        provideHttpClient()
+      ]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(HolidayListComponent);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('holidays', [{}])
+
     fixture.detectChanges();
   });
 
